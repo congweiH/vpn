@@ -4,6 +4,7 @@ import com.congwei.vpn.controller.requestbody.UserCreate;
 import com.congwei.vpn.model.User;
 import com.congwei.vpn.service.VpnService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,12 @@ public class VpnController {
     @PutMapping
     public ResponseEntity<User> update(@RequestBody User user) {
         return ResponseEntity.ok(vpnService.update(user));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> delete(@Param("email") String email) {
+        vpnService.delete(email);
+        return null;
     }
 
 }
