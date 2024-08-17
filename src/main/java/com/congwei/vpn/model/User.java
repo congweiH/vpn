@@ -18,5 +18,7 @@ public class User {
 
     private LocalDate deadline;
 
+    private String base;
+
     private String remark;
 }
