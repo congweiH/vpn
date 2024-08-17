@@ -4,6 +4,8 @@ import com.congwei.vpn.model.User;
 import com.congwei.vpn.repository.VpnRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +19,9 @@ public class VpnServiceImpl implements VpnService {
 
     @Override
     public List<User> queryList() {
-        return vpnRepository.findAll();
+        Sort sort = Sort.by(Sort.Order.asc("deadline"));
+        Example<User> example = Example.of(new User());
+        return vpnRepository.findAll(example, sort);
     }
 
     @Override
